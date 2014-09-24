@@ -1,0 +1,17 @@
+.high-score-table {
+	border: 1px solid black;
+}
+
+.high-score-header {
+	text-align: center;
+}
+
+.high-score-row {
+	background-color: white;
+}
+
+.high-score-data {
+	border: 1px solid black;
+}
+
+
