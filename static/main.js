@@ -2,6 +2,7 @@
 
 var HighScoreTable = React.createClass({
 	render:	function() {
+		console.log(this.props.data);
 		var rows = this.props.data.map(function(row, i){
 			return (<HighScoreRow ranking={row.ranking} name={row.name} score={row.score} key={i} />);
 		});
@@ -70,21 +71,47 @@ var App = React.createClass({
 
 	updateData: function(entry){
 
-		this.setState({
-			data: this.state.data.concat([entry])
-		});
+		// this.setState({
+		// 	data: this.state.data.concat([entry])
+		// });
+
+		$.ajax({
+	      url: 'dataupdate',
+	      dataType: 'json',
+	      type: 'POST',
+	      data: entry,
+	      success: function(data) {
+	        this.setState({data: [data]});
+	      }.bind(this),
+	      error: function(xhr, status, err) {
+	        console.error(this.props.url, status, err.toString());
+	      }.bind(this)
+	    });
 
 	},
+
+	componentDidMount: function() {
+	    $.ajax({
+	      url: this.props.url,
+	      dataType: 'json',
+	      success: function(data) {
+	        this.setState({data: data});
+	      }.bind(this),
+	      error: function(xhr, status, err) {
+	        console.error(this.props.url, status, err.toString());
+	      }.bind(this)
+	    });
+	  },
 
   	render: function() {
 
     	return (
     		<div>
     			<HighScoreInput updateData={this.updateData}/>
-    			<HighScoreTable url="data.json" data={this.state.data} />
+    			<HighScoreTable data={this.state.data} />
     		</div>
     	);
   	}
 });
 
-React.renderComponent(<App />,document.getElementById('wrapper'));
+React.renderComponent(<App url="static/data.json" />,document.getElementById('wrapper'));
