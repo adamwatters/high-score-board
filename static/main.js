@@ -81,7 +81,7 @@ var App = React.createClass({
 	      type: 'POST',
 	      data: entry,
 	      success: function(data) {
-	        this.setState({data: [data]});
+	        this.setState({data: data});
 	      }.bind(this),
 	      error: function(xhr, status, err) {
 	        console.error(this.props.url, status, err.toString());
@@ -92,7 +92,7 @@ var App = React.createClass({
 
 	componentDidMount: function() {
 	    $.ajax({
-	      url: this.props.url,
+	      url: 'getdata',
 	      dataType: 'json',
 	      success: function(data) {
 	        this.setState({data: data});
