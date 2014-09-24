@@ -64,11 +64,7 @@ var App = React.createClass({
 	getInitialState: function(){
 
 		return {
-			data: [
-  				{ranking: 1, name: 'chaz', score: 99},
-  				{ranking: 3, name: 'carl', score: 60},
-  				{ranking: 2, name: 'mike', score: 95}
-			]
+			data: []
 		};
 	},
 
@@ -85,7 +81,7 @@ var App = React.createClass({
     	return (
     		<div>
     			<HighScoreInput updateData={this.updateData}/>
-    			<HighScoreTable data={this.state.data} />
+    			<HighScoreTable url="data.json" data={this.state.data} />
     		</div>
     	);
   	}

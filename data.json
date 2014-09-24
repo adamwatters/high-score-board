@@ -1,0 +1,7 @@
+ 
+ [ 				
+ 		{ranking: 1, name: 'chaz', score: 99},
+  		{ranking: 3, name: 'carl', score: 60},
+  		{ranking: 2, name: 'mike', score: 95}
+
+ ]
